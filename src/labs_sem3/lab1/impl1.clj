@@ -26,15 +26,11 @@
 (println (sum-of-primes 2000000))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;  "->>" Definition
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;(time (->> (range 2 2000001)
-;              (filter #(empty? (filter-1 %)))
-;              (reduce +)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;  Another variant, but with infinite sequence in use
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;(println (->> (map #(+ 2 %) (take 1999999 (range)))
-;              (filter #(empty? (filter-1 %)))
-;              (reduce +)))
+;(defn sum-of-primes [n]
+;  (->> (map #(+ 2 %) (take n (range)))
+;       (filter #(empty? (filter-1 %)))
+;       (reduce +)))
+;
+;(println (sum-of-primes 2000000))

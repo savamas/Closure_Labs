@@ -5,7 +5,7 @@
 (defn sieve-primes
   "Sieve of Eratosthenes implementation"
   ([n]
-   (sieve (sorted-set) (apply sorted-set (range 2 (inc n))) (+ n 2)))
+   (sieve-primes (sorted-set) (apply sorted-set (range 2 (inc n))) (+ n 2)))
   ([primes candset end]
    (let [prime (first candset)]
      (if ( > (* prime prime) end)
@@ -14,5 +14,4 @@
               (clojure.set/difference candset (range prime end prime))
               end)))))
 
-(dotimes [n 10]
-  (time (sieve-primes 2000000)))
+(println (sieve-primes 2000000))

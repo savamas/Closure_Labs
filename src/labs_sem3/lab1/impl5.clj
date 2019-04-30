@@ -10,4 +10,4 @@
         (let [next-to-try (first (doall (filter #(> % last-tried) filtered)))]
           (recur next-to-try filtered))))))
 
-(println (sieve-primes 20))
+(println (sieve-primes 2000000))

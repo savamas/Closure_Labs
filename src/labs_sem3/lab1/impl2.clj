@@ -26,8 +26,4 @@
       )
     @result))
 
-;;(println (sum-of-primes 2000001))
-;;(time (sum-of-primes 2000001))
-
-(dotimes [n 100]
-  (time (sum-of-primes 2000001)))
+(println (sum-of-primes 2000000))
