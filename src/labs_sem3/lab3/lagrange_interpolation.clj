@@ -2,6 +2,8 @@
 
 (defn interpolate
   "Lagrange interpolation"
-  [x y z]
-  (println "Something should be here...")
+  [data-flow
+   step
+   min-points]
+  (println (first data-flow))
 )
