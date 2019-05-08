@@ -5,7 +5,7 @@
 (defn read-points
   "Returns LazySeq of stdin"
   []
-  (csv/read-csv (BufferedReader. *in*) :separator \;))
+  (map #(vec [(Float/parseFloat (first %)) (Float/parseFloat (second %))]) (csv/read-csv (BufferedReader. *in*) :separator \;)))
 
 (defn print-points
   "Formats & prints csv values"
