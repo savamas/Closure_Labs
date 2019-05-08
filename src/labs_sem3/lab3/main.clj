@@ -18,17 +18,14 @@
   [method
    step
    & min-points]
-  (if (= method "segments")
-    (approximate (io/read-points) (Float/parseFloat step))
-    (interpolate (io/read-points) (Float/parseFloat step) (Float/parseFloat (first min-points))))
-  ;
-  ;
-  ;(loop [curr-point (- (get-x-values-range min-points) 1)
-  ;       prev-point 0]
-  ;  (let [x-start (first (nth data-flow prev-point))
-  ;        x-end (second (nth data-flow curr-point))
-  ;        y-values-nodes (map #(first %) (take min-points (drop prev-point data-flow)))
-  ;        x-values-nodes (map #(second %) (take min-points (drop prev-point data-flow)))]
-  ;    (io/print-points (range x-start x-end step) (map #(reduce + (map * (basic-pol-coll % x-values-nodes) y-values-nodes)) (range x-start x-end step))))
-  ;  (recur (inc curr-point) (inc prev-point)))
+  (loop [curr-point (- (get-x-values-range min-points) 1)
+         prev-point 0]
+    (let [x-start (first (nth data-flow prev-point))
+          x-end (first (nth data-flow curr-point))
+          y-values-nodes (map #(second %) (take (+ 1 (- curr-point prev-point)) (drop prev-point data-flow)))
+          x-values-nodes (map #(first %) (take (+ 1 (- curr-point prev-point)) (drop prev-point data-flow)))]
+      (if (= method "segments")
+        (io/print-points (range x-start x-end (Float/parseFloat step)) (approximate x-values-nodes y-values-nodes (Float/parseFloat step)))
+        (io/print-points (range x-start x-end (Float/parseFloat step)) (interpolate x-values-nodes y-values-nodes (Float/parseFloat step)))))
+    (recur (inc curr-point) (inc prev-point)))
 )
